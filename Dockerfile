@@ -8,7 +8,10 @@ WORKDIR /app
 COPY . .
 
 # Install Project Requirements
-RUN pip install --no-cache-dir -r requirements.txt --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt --upgrade pip && chmod +x entrypoint.sh
+
+# Make Migrations
+ENTRYPOINT [ "./entrypoint.sh" ]
 
 # Start Server
 CMD ["python", "manage.py","runserver", "0.0.0.0:8000"]
