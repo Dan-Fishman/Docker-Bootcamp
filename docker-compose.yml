@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  api:
+    image: todo:latest
+    depends_on:
+      - postgres
+    environment:
+      - DJANGO_POSTGRES_DATABASE=postgres
+      - DJANGO_POSTGRES_USER=postgres
+      - DJANGO_POSTGRES_PASSWORD=mysecretpassword
+      - DJANGO_POSTGRES_HOST=db
+      - DJANGO_POSTGRES_PORT=5432
+    ports:
+      - 8000:8000
+
+  db:
+    image: postgres:14.2-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+    ports:
+      - 5432:5432

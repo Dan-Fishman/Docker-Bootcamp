@@ -10,6 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+
+import environ
+
+env = environ.Env()
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,23 +82,23 @@ WSGI_APPLICATION = "todolist.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": env("DJANGO_POSTGRES_DATABASE", default="postgres"),
-#         "USER": env("DJANGO_POSTGRES_USER", default="postgres"),
-#         "PASSWORD": env("DJANGO_POSTGRES_PASSWORD", default="mysecretpassword"),
-#         "HOST": env("DJANGO_POSTGRES_HOST", default="localhost"),
-#         "PORT": env.int("DJANGO_POSTGRES_PORT", default=5432),
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env("DJANGO_POSTGRES_DATABASE", default="postgres"),
+        "USER": env("DJANGO_POSTGRES_USER", default="postgres"),
+        "PASSWORD": env("DJANGO_POSTGRES_PASSWORD", default="mysecretpassword"),
+        "HOST": env("DJANGO_POSTGRES_HOST", default="localhost"),
+        "PORT": env.int("DJANGO_POSTGRES_PORT", default=5432),
+    }
+}
 
 
 # Password validation
